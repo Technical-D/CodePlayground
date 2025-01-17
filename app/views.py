@@ -3,6 +3,7 @@ from app.forms import AccountAuthenticationForm, SignupForm
 from app.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+from datetime import datetime
 
 # Create your views here.
 def index(request):
@@ -50,3 +51,19 @@ def signup_view(request):
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html',  {'signup_form':form})
+
+def about_us_view(request):
+    return render(request, 'app/about.html')
+
+def profile(request):
+    user = request.user
+    if user.is_authenticated:
+        user_id = user.id
+        user = User.objects.get(pk=user_id)
+        f_name = user.name.split()[0]
+        date_obj = datetime.fromisoformat(str(user.date_joined))
+        formatted_date = date_obj.strftime("%B %d, %Y")
+    else:
+        return redirect('login')
+
+    return render(request, 'app/profile.html', {'first_name':f_name, "user":user, "date_joined":formatted_date})

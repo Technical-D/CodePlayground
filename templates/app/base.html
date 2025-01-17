@@ -22,11 +22,11 @@
                 <a href="{% url 'index' %}">Home</a>
                 <a href="#home">Interpreter</a>
                 <a href="#problems">Problems</a>
-                <a href="about.html">About Us</a>
+                <a href="{% url 'about' %}">About Us</a>
             </nav>
             {% if request.user.is_authenticated %}
             <div class="icons">
-                <a href="profile.html" class="fas fa-user-circle"></a>
+                <a href="{% url 'profile' %}" class="fas fa-user-circle"></a>
                 <a href="{% url 'logout' %}" class="fa-solid fa-right-from-bracket"></a>
             </div>
             {% else %}
