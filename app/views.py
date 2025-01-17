@@ -8,7 +8,7 @@ from django.contrib import messages
 def index(request):
     return render(request, 'app/index.html')
 
-def login(request):
+def login_view(request):
     user = request.user
     if user.is_authenticated:
         return redirect('index')
@@ -32,7 +32,7 @@ def logout_view(request):
     messages.success(request, 'Logged out Sucessfully!!')
     return redirect("index")
 
-def signup(request):
+def signup_view(request):
     user = request.user
     if user.is_authenticated:
         return redirect('index')

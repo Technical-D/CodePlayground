@@ -7,7 +7,7 @@ const cmsg = document.querySelector(".cmsg")
 form.addEventListener("submit", (e) =>{
     e.preventDefault()
     pswd_validation()
-    if(pswd_validation() & telephone_validation()){
+    if(pswd_validation()){
         submit_form();
     }
 })
@@ -34,7 +34,7 @@ function pswd_validation(){
       </ul>`;
         setTimeout(() => {
             cmsg.innerHTML = "";
-        }, 5000);
+        }, 10000);
         return false
     }
 }

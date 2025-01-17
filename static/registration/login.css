@@ -46,33 +46,28 @@ form a:hover{
     justify-content: center;
     gap: 1rem;
     align-items: center;
-    padding: 1rem;
+    padding: .5rem;
     border: 1px solid #fff;
-    background-color:#dfd ;
+    background-color:#E0F7FA ;
     position: absolute;
     left: 0; 
     right: 0;
-    top: 100px; 
+    top: 10px; 
     margin-left: auto; 
     margin-right: auto;
     width: fit-content;
     z-index: 2;
 }
-
-
 .msg{
-    font-size: 2rem;
     font-weight: bold;
-    color: var(--green);
+    color: var(--blue);
     list-style: none;
     width: 90%;
 }
 .messages span{
-    font-size: 1.7rem;
     color: gray;
     cursor: pointer;
 }
-
 .logo{
     color:var(--dark);
     font-weight: bolder;
