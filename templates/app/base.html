@@ -24,18 +24,36 @@
                 <a href="#problems">Problems</a>
                 <a href="about.html">About Us</a>
             </nav>
-
-            <!-- <div class="icons">
+            {% if request.user.is_authenticated %}
+            <div class="icons">
                 <a href="profile.html" class="fas fa-user-circle"></a>
                 <a href="logout.html" class="fa-solid fa-right-from-bracket"></a>
-            </div> -->
-            <div>
-            <a href="login.html" class="btn">Login</a>
-            <a href="signup.html" class="btn">Signup</a>
             </div>
+            {% else %}
+            <div>
+            <a href="{% url 'login' %}" class="btn">Login</a>
+            <a href="{% url 'signup' %}" class="btn">Signup</a>
+            </div>
+            {% endif %}
         </div>
     </header>
-
+    <br>
+    {% if messages %}
+    <div class="messages" id="messages">
+        <ul class="msg">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        <span><i class="fa-solid fa-xmark" id="cross" onclick="rm()"></i></span>
+    </div>
+    {% endif %}
+    <script>
+        const messages = document.getElementById('messages')
+        function rm(){
+            messages.style.display = 'none';
+        }
+    </script>
     {% block content %}
       
     {% endblock content %}

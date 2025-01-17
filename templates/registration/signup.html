@@ -17,30 +17,60 @@
     <link rel="stylesheet" href="{% static 'registration/signup.css' %}">
 </head>
 <body>
+  {% if messages %}
+  <div class="messages" id="messages">
+  <ul class="msg">
+  {% for message in messages %}
+  <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+  </ul>
+  <span><i class="fa-solid fa-xmark" id="cross" onclick="rm()"></i></span>
+  </div>
+  {% endif %}
+  <script>
+    const messages = document.getElementById('messages')
+    function rm(){
+        messages.style.display = 'none';
+    }
+  </script>
     <section class="form-signup w-100 m-auto">
-        <form>
+        <form method="post">
+          {% csrf_token %}
         <a class="logo"><i class="fa-brands fa-codepen"></i>CodePlayground</a>
           <h1 class=" heading">Please <span>signup</span></h1>
           
           <div class="form-floating">
-            <input type="text" class="form-control name" id="floatingInput" placeholder="Full Name" required autofocus>
+            <input type="text" class="form-control name" id="floatingInput" placeholder="Full Name" name="name" required autofocus>
             <label for="floatingInput">Full Name</label>
           </div>
           <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="Email" required>
+            <input type="email" class="form-control" id="floatingInput" placeholder="Email" name="email" required>
             <label for="floatingInput">Email</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control pswd" id="floatingPassword" placeholder="Password" required>
+            <input type="password" class="form-control pswd" id="floatingPassword" placeholder="Password" name="password1" required>
             <label for="floatingPassword">Password</label>
-          </div>
+          </div>  
           <div class="form-floating">
-            <input type="password" class="form-control cpswd" id="floatingCPassword" placeholder="Confirm Password" required>
+            <input type="password" class="form-control cpswd" id="floatingCPassword" placeholder="Confirm Password" name="password2" required>
             <label for="floatingCPassword">Confirm Password</label>
           </div>
           <div class="cmsg"></div>
+          {% for field in signup_form %}
+              <ul class="cmsg">
+              {% for error in field.errors %}
+                <li style="color: red">{{ error }}</li>
+              {% endfor %}
+              </ul>
+          {% endfor %}
+          {% if signup_form.non_field_errors %}
+          <div class="cmsg">
+              <li>{{signup_form.non_field_errors}}</li>
+          </div>
+
+          {% endif %}
           <button class="w-100 btn btn-lg btn-primary" type="submit">Signup</button>
-          Already a user?<a href="login.html"  class="fp"> Login</a>
+          Already a user?<a href="{% url 'login' %}"  class="fp"> Login</a>
           
           <p class=" mb-3 text-muted">&copy;2025 CodePlayground</p>
         </form>
