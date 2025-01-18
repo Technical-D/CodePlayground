@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Online Interpreter</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/code.ico' %}">
+    <!-- Icon CDN -->   
+    <script src="https://kit.fontawesome.com/f6f8f493f3.js" crossorigin="anonymous"></script>
+    <!-- Include CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/dracula.min.css">
+
+    <link rel="stylesheet" href="{% static 'app/interpreter.css' %}">
+
+    
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>Python Online Interpreter</h1>
+    </div>
+
+    <div class="header2">
+        <div>
+            <a class="home" href="{% url 'index' %}"><i class="fa-solid fa-house"></i></a>
+        </div>
+        <!-- Buttons -->
+        <div class="buttons">
+            <button onclick="runCode()">Run ❯</button>
+            <button id="clear-btn" onclick="clearOutput()">Clear</button>
+        </div>
+    </div>
+
+    <!-- Main container for editor and output -->
+    <div class="container">
+        <!-- Code Editor -->
+        <div id="editor-container">
+            <textarea id="code-editor">
+# Sample Python code
+# This code prints 'Hello, World!' to the screen
+
+print("Hello, World!")
+
+# You can modify this code and run it to see the results!
+            </textarea>
+        </div>
+
+        <!-- Output Section -->
+        <div id="output-container">
+            <pre id="output"># Output </pre>
+        </div>
+    </div>
+    <!-- Include CodeMirror JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/python/python.min.js"></script>
+
+    <script src="{% static 'app/interpreter.js' %}"></script>
+</body>
+
+</html>

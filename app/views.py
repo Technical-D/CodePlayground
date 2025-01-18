@@ -4,6 +4,10 @@ from app.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from datetime import datetime
+import subprocess
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 # Create your views here.
 def index(request):
@@ -67,3 +71,32 @@ def profile(request):
         return redirect('login')
 
     return render(request, 'app/profile.html', {'first_name':f_name, "user":user, "date_joined":formatted_date})
+
+def python_interpreter_view(request):
+    user = request.user
+    if not user.is_authenticated:
+        messages.warning(request, "Please login before accessing interpreter!")
+        redirect('login')
+
+    return render(request, 'app/interpreter.html')
+
+@csrf_exempt  # If you want to exempt CSRF for this view, you can use this decorator
+def run_python(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            try:
+                # Parse the JSON data from the request body
+                data = json.loads(request.body)
+                code = data.get("code", "")
+                
+                output = subprocess.run(['python', '-c', code], capture_output=True, text=True, timeout=5)
+                print(output.stdout, output.stderr)
+                return JsonResponse({'output': output.stdout, 'error': output.stderr})
+            except subprocess.TimeoutExpired:
+                return JsonResponse({'error': 'Error: Code execution timed out. Please check your code for infinite loops or inefficiencies.'})
+            except Exception as e:
+                return JsonResponse({'error': f"Error: {str(e)}"})
+        else:
+            return JsonResponse({'error': 'Invalid method, POST required.'}, status=405)
+    else:
+        redirect('login')

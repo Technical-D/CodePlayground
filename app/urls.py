@@ -8,6 +8,8 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('about/', views.about_us_view, name='about'),
     path('user/profile/', views.profile, name='profile'),
+    path('python/interpreter', views.python_interpreter_view, name="python-intepreter"),
+    path('python/run', views.run_python, name="run"),
 
 
 ]
