@@ -80,12 +80,11 @@ def python_interpreter_view(request):
 
     return render(request, 'app/interpreter.html')
 
-@csrf_exempt  # If you want to exempt CSRF for this view, you can use this decorator
+@csrf_exempt 
 def run_python(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             try:
-                # Parse the JSON data from the request body
                 data = json.loads(request.body)
                 code = data.get("code", "")
                 
