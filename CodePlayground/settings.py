@@ -20,6 +20,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = Path.joinpath(BASE_DIR, 'templates')
 STATIC_DIR = Path.joinpath(BASE_DIR, 'static')
+MEDIA_DIR = Path.joinpath(BASE_DIR, 'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -132,6 +133,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS =[STATIC_DIR,]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = MEDIA_DIR
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
