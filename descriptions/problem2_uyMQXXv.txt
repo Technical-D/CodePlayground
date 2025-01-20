@@ -1,0 +1,30 @@
+<h1>Problem: Sum of Two Numbers</h1>
+
+<h2>Objective:</h2>
+<p>The task is to implement a function <code>sum_of_two_numbers(a, b)</code> that takes two integers <code>a</code> and <code>b</code> as input and returns their sum.</p>
+
+<h2>Input:</h2>
+<p>The function takes two integers:</p>
+<ul>
+    <li><code>a</code>: The first integer.</li>
+    <li><code>b</code>: The second integer.</li>
+</ul>
+
+<h2>Output:</h2>
+<p>The function should return the sum of <code>a</code> and <code>b</code>.</p>
+
+<h2>Example:</h2>
+<p>If the input is:</p>
+<pre>3
+4</pre>
+<p>The output should be:</p>
+<pre>7</pre>
+
+<h2>Explanation:</h2>
+<p>The sum of <code>3</code> and <code>4</code> is <code>7</code>, so the function should return <code>7</code>.</p>
+
+<h2>Hints:</h2>
+<ul>
+    <li>To solve this problem, you just need to return the sum of the two numbers.</li>
+    <li>Ensure that both numbers are treated as integers for proper addition.</li>
+</ul>

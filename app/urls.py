@@ -10,6 +10,7 @@ urlpatterns = [
     path('user/profile/', views.profile, name='profile'),
     path('python/interpreter', views.python_interpreter_view, name="python-intepreter"),
     path('python/run', views.run_python, name="run"),
+    path('python/problems', views.problems_view, name="problems"),
 
 
 ]

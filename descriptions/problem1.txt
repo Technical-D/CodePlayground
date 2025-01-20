@@ -1,0 +1,26 @@
+<h1>Problem: Factorial of a Number</h1>
+
+<h2>Objective:</h2>
+<p>The task is to implement a function <code>factorial(n)</code> that computes the factorial of a given number <code>n</code>.</p>
+<p>The factorial of <code>n</code> is the product of all integers from 1 to <code>n</code>. It is denoted as <code>n!</code> and is calculated as:</p>
+<ul>
+    <li><code>n! = n × (n - 1) × (n - 2) × ... × 1</code></li>
+</ul>
+
+<h2>Input:</h2>
+<p>The function takes a single integer <code>n</code> as input.</p>
+
+<h2>Output:</h2>
+<p>The function should return the factorial of <code>n</code>.</p>
+
+<h2>Example:</h2>
+<p>If the input is:</p>
+<pre>5</pre>
+<p>The output should be:</p>
+<pre>120</pre>
+
+<h2>Hints:</h2>
+<ul>
+    <li>Consider using a loop or recursion to calculate the factorial.</li>
+    <li>For example, <code>5! = 5 × 4 × 3 × 2 × 1 = 120</code>.</li>
+</ul>

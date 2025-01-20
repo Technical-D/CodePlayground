@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.utils.timezone import now
 
 # Create your models here.
 
@@ -55,3 +56,35 @@ class User(AbstractBaseUser):
     
     def has_module_perms(self, app_label):
         return True
+    
+class Problem(models.Model):
+    DIFFICULTY_CHOICES = [
+        ('Easy', 'Easy'),
+        ('Medium', 'Medium'),
+        ('Hard', 'Hard'),
+    ]
+
+    title = models.CharField(max_length=255, unique=True)
+    short_description = models.TextField()
+    difficulty = models.CharField(max_length=50, choices=DIFFICULTY_CHOICES, default='Easy')
+    score = models.PositiveIntegerField()
+    starter_code = models.TextField(help_text="Python starter code for the problem")
+    description_file = models.FileField(upload_to='descriptions/', help_text="Path to detailed description file")
+    created_at = models.DateTimeField(default=now, editable=False)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+
+class UserProblem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_problems')
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name='user_problems')
+    solved = models.BooleanField(default=False)
+    solved_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        unique_together = ('user', 'problem')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.problem.title}"
