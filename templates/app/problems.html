@@ -1,0 +1,28 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+<section>
+    <div class="problems-container">
+        <h1>Python Problems</h1>
+        {% for problem in problems %}
+        <div class="problem-card">
+          <div class="problem-info">
+            <h3 class="problem-title">{{ problem.title }}</h3>
+            <p class="problem-details">{{ problem.difficulty }}, Score: {{ problem.score }}, Success Rate: 98.25%</p>
+            <p class="problem-description">{{ problem.short_description }}</p>
+          </div>
+
+          <div class="problem-actions">
+            {% if problem.id in solved_problems %}
+            <a href="" class="solved-button">Solved ✔</a>
+            {% else %}
+            <a href="" class="solve-button">SolveChallenge</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>      
+</section>
+
+{% endblock content %}
