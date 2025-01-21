@@ -88,10 +88,9 @@ def run_python(request):
             code = data.get("code", "")
             
             output = subprocess.run(['python', '-c', code], capture_output=True, text=True, timeout=5)
-            print(output.stdout, output.stderr)
             return JsonResponse({'output': output.stdout, 'error': output.stderr})
         except subprocess.TimeoutExpired:
-            return JsonResponse({'error': 'Error: Code execution timed out. Please check your code for infinite loops or inefficiencies.'})
+            return JsonResponse({'error': 'Error: Code execution timed out.\nPlease check your code for infinite loops or inefficiencies.'})
         except Exception as e:
             return JsonResponse({'error': f"Error: {str(e)}"})
     else:

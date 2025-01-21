@@ -12,14 +12,23 @@ const editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
 // Run Code
 async function runCode() {
     const code = editor.getValue();
-    console.log(code);
-    const response = await fetch('/python/run', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: code })
-    });
-    const result = await response.json();
-    document.getElementById('output').innerText = result.output + result.error;
+    const spinner = document.getElementById('spinner');
+    spinner.classList.remove('hidden');
+    try{
+        const response = await fetch('/python/run', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code: code })
+        });
+        const result = await response.json();
+        document.getElementById('output').innerText = result.output + result.error;
+    } catch (error){
+        outputElement.innerText = "An error occurred while running the code.";
+        console.error(error);
+    } finally{
+        spinner.classList.add('hidden');
+    }
+    
 }
 // Clear Output
 function clearOutput() {
