@@ -249,14 +249,10 @@ section{
     margin-bottom: 20px;
 }
 .about-us{
-    padding-top: 60px;
+    padding-top: 90px;
     padding-bottom: 0;
 }
 .about-us .container {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 20px;
-    background: #fff;
     font-size: 1.6rem;
 }
 
